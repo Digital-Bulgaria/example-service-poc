@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootContextLoader;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -17,8 +16,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringBootContextLoader.class)
 @WebAppConfiguration
-@ActiveProfiles(profiles="test")
-public class WMSReceiveTest {
+//@ActiveProfiles(profiles="integration")
+public class IntegrationTestIT {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired

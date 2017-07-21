@@ -1,8 +1,5 @@
 package com.digital.fullfilment.integration.dim.connector;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -11,10 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.support.converter.MappingJackson2MessageConverter;
-import org.springframework.jms.support.converter.MessageConverter;
-import org.springframework.jms.support.converter.MessageType;
 import org.springframework.jms.support.destination.BeanFactoryDestinationResolver;
+
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
 
 /**
  * TODO add jndi templates to connect to jboss jms.
@@ -42,8 +39,7 @@ public class JMSConfig implements BeanFactoryAware {
 
 	@Bean
 	public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory) throws JMSException {
-		JmsTemplate jmsTemplate = new JmsTemplate(connectionFactory);
-		return jmsTemplate;
+		return new JmsTemplate(connectionFactory);
 	}
 
 //	// Serialize message content to json using TextMessage
