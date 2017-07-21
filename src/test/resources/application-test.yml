@@ -1,0 +1,31 @@
+eureka:
+  server:
+    enabled: false
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+ 
+management:
+  security:
+    enabled: false
+    
+security:
+  basic:
+    enabled: false
+    
+logging:
+  level:
+    org.springframework.messaging: DEBUG
+    org.springframework.integration: DEBUG
+    org.springframework.amqp: DEBUG
+    
+spring:
+  activemq:
+    in-memory: true
+    pooled: false
+    
+jms:
+  wmsInQueue:
+    name: wmsInQueue  
+  wmsOutQueue:
+    name: wmsOutQueue

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: dim
+  profiles:
+    active: default
+server:
+  port: 8080
+
