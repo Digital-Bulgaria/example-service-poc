@@ -27,6 +27,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <skipUnitTests>false</skipUnitTests>
+
+        <customTestSourceDirectory>${project.basedir}/src/test/java</customTestSourceDirectory>
+        <customTestOutputDirectory>${project.build.directory}/test-classes</customTestOutputDirectory>
+        <customTestResourcesDirectory>src/test/resources</customTestResourcesDirectory>
     </properties>
 
 
@@ -109,6 +113,16 @@
         </dependency>
     </dependencies>
     <build>
+        <testSourceDirectory>${customTestSourceDirectory}</testSourceDirectory>
+        <testOutputDirectory>${customTestOutputDirectory}</testOutputDirectory>
+
+        <testResources>
+            <testResource>
+                <directory>${customTestResourcesDirectory}</directory>
+                <targetPath>${customTestOutputDirectory}</targetPath>
+            </testResource>
+        </testResources>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -180,92 +194,28 @@
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <version>${spring-boot-maven-plugin.version}</version>
-                    <!--<executions>-->
-                        <!--<execution>-->
-                            <!--<goals>-->
-                                <!--<goal>repackage</goal>-->
-                            <!--</goals>-->
-                        <!--</execution>-->
-                    <!--</executions>-->
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven-testing-plugin.version}</version>
-                    <configuration>
-                        <skipTests>${skipUnitTests}</skipTests>
-                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
-            <!--<plugin>-->
-                <!--<groupId>org.jacoco</groupId>-->
-                <!--<artifactId>jacoco-maven-plugin</artifactId>-->
-            <!--</plugin>-->
-            <!--<plugin>-->
-                <!--<groupId>io.fabric8</groupId>-->
-                <!--<artifactId>docker-maven-plugin</artifactId>-->
-            <!--</plugin>-->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <version>1.9.1</version>
-                <executions>
-                    <execution>
-                        <id>add-integration-test-sources</id>
-                        <phase>generate-test-sources</phase>
-                        <goals>
-                            <goal>add-test-source</goal>
-                        </goals>
-                        <configuration>
-                            <sources>
-                                <source>src/integration-test/java</source>
-                            </sources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>add-integration-test-resources</id>
-                        <phase>generate-test-resources</phase>
-                        <goals>
-                            <goal>add-test-resource</goal>
-                        </goals>
-                        <configuration>
-                            <resources>
-                                <resource>
-                                    <directory>src/integration-test/resources</directory>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <includes>
-                        <include>IntegrationTestIT.java</include>
-                    </includes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>failsafe-integration-tests</id>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -273,20 +223,16 @@
     <profiles>
         <profile>
             <id>integration-test</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
 
             <properties>
-                <skipUnitTests>true</skipUnitTests>
+                <customTestSourceDirectory>${project.basedir}/src/integration-test/java</customTestSourceDirectory>
+                <customTestOutputDirectory>${project.build.directory}/integration-test-classes</customTestOutputDirectory>
+                <customTestResourcesDirectory>src/integration-test/resources</customTestResourcesDirectory>
             </properties>
 
-            <build>
-                <plugins>
-                    <!--<plugin>-->
-                        <!--<groupId>org.apache.maven.plugins</groupId>-->
-                        <!--<artifactId>maven-failsafe-plugin</artifactId>-->
-                        <!--<version>${maven-testing-plugin.version}</version>-->
-                    <!--</plugin>-->
-                </plugins>
-            </build>
         </profile>
     </profiles>
 
