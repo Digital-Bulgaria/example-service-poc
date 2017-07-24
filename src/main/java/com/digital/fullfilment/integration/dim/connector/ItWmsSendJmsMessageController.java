@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/jms")
-public class ITWMSSendMessageController {
+public class ItWmsSendJmsMessageController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	private JmsTemplate jmsTemplate;

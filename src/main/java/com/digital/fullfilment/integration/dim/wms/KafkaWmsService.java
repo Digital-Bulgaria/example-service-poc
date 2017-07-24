@@ -3,10 +3,10 @@ package com.digital.fullfilment.integration.dim.wms;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface WMSService {
+public interface KafkaWmsService {
 
-	void onWMSMessage(String message);
+	void onKafkaMessage(String message);
 
-	void sendWMSMessage(String message);
+	void sendKafkaMessage(String message);
 
 }

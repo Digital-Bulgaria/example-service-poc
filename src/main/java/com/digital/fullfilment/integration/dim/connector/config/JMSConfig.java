@@ -1,4 +1,4 @@
-package com.digital.fullfilment.integration.dim.connector;
+package com.digital.fullfilment.integration.dim.connector.config;
 
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;

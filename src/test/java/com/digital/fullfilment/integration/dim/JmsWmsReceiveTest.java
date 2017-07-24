@@ -14,20 +14,20 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.digital.fullfilment.integration.dim.wms.WMSService;
+import com.digital.fullfilment.integration.dim.wms.JmsWmsService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = Application.class, loader = SpringBootContextLoader.class)
 @WebAppConfiguration
 @ActiveProfiles(profiles = "test")
-public class WMSReceiveTest {
+public class JmsWmsReceiveTest {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired(required = false)
 	private JmsTemplate jmsTemplate;
 
 	@Autowired
-	private WMSService wmsService;
+	private JmsWmsService wmsService;
 
 	@Before
 	public void setUp() {
