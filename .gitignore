@@ -1,0 +1,13 @@
+*/target/*
+.classpath
+.settings/
+.project
+
+
+# Ignore IntelliJ Idea's project files
+*.iml
+.idea/
+
+# Ignore filesystem hidden files
+.*
+!.gitignore
